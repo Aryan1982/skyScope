@@ -1,0 +1,50 @@
+<!-- *ngIf="data.length && data[0].temperature" -->
+<div class="homePage" >
+  <div class="header" *ngIf="data.length && data[0].temperature">
+    <!-- <h1>Vadodara</h1> -->
+    <!-- <h2>42&#8451;  </h2> -->
+    <h1>{{data[0].location}}</h1>
+    <h1 >{{data[0].temperature}}&#8451;</h1>
+  </div>
+  
+    <div class="searchBarDiv">
+      <input #searchInput type="text" placeholder="Search Place" [(ngModel)]="place" class="search-input">
+
+      <button (click)="onSearch()" class="search-button"><img src="../assets/search-interface-symbol.png" style="width: 18px;" />
+      </button>
+
+      <button (click)="onSave(); searchInput.value=''" class="search-button savebtn">
+        <img src="../assets/bookmark.png" style="width: 18px;" />
+      </button>
+
+    </div>
+<div class="savedPlaces">
+
+  <div *ngFor="let places of savedPlaces ; let i = index" class="places">
+
+    <div class="place" (click)="searchSelectedPlace(i)">
+      {{places}}
+      <button (click)="deleteSavedPlace(i)"><img src="../assets/delete.png" style="width: 18px;" /></button>
+    </div>
+  
+  </div>
+</div>
+
+<table class="Data" *ngIf="data.length && data[0].temperature">
+  <tr>
+    <th>Overall </th>
+    <th>UV</th>
+    <th>Country</th>
+    <th>Local Time</th>
+    <th>Last Updated</th>
+  </tr>
+   <tr>
+    <td>{{data[0].overAll}}</td>
+    <td>{{data[0].UV}}</td>
+    <td>{{data[0].country}}</td>
+    <td>{{data[0].LocalTime}}</td>
+    <td>{{data[0].LastUpdated}}</td>
+  </tr>
+</table>
+
+</div>
